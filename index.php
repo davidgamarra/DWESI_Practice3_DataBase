@@ -14,7 +14,21 @@ if($sesion->isLogged()){
 	$sesion->sendRedirect("login.php");
 }
 
-$mensajes = $mensajeManager->getList(1, "fecha", 2);
+$pagination = false;
+if($mensajeManager->count() > Constant::NRPP){
+	$page = Request::get("page");
+	if($page === null){
+		$page = 1;
+	}
+	$pagination = true;
+	$pager = new Pager($mensajeManager->count(), Constant::NRPP, $page);
+}
+
+if(!$pagination){
+	$mensajes = $mensajeManager->getList(1, "fecha desc", $mensajeManager->count());
+} else {
+	$mensajes = $mensajeManager->getList($page, "fecha desc");
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +41,7 @@ $mensajes = $mensajeManager->getList(1, "fecha", 2);
     <body>
 		<nav>
 			<a href="index.php"><img src="resources/logo.png" class="logo"/></a>
-			<a href="phplogout.php" class="link">Logout</a>
+			<a href="php/phplogout.php" class="link">Logout</a>
 			<a href="profile.php" class="link">Perfil</a>
 			<a href="users.php" class="link">Usuarios</a>
 		</nav>
@@ -42,7 +56,7 @@ $mensajes = $mensajeManager->getList(1, "fecha", 2);
 				<h>Cumpleaños: <span><?php echo $usuario->getBday(); ?></span></h>
 			</div>
   			<div class="content">
-  				<form action="phpmensaje.php" method="post" id="formmensaje">
+  				<form action="php/phpmensaje.php" method="post" id="formmensaje">
   					<input type="text" name="mensaje" placeholder="¿Qué estas pensando?" id="inputmensaje"/>
    					<input type="submit" value="Enviar" id="submitmensaje"/>
   				</form>
@@ -68,7 +82,7 @@ $mensajes = $mensajeManager->getList(1, "fecha", 2);
 							<h class="fecha"><?php echo $comentario->getFecha(); ?></h>
 						</div>
 					<?php } ?>
-						<form action="phpcomentario.php" method="post" class="formcomentario">
+						<form action="php/phpcomentario.php" method="post" class="formcomentario">
 							<input type="text" name="mensaje" placeholder="Deja tu comentario..."/>
 							<input type="hidden" name="id" value="<?php echo $mensaje->getId(); ?>"/>
 							<input type="submit" value="Enviar"/>
@@ -76,6 +90,19 @@ $mensajes = $mensajeManager->getList(1, "fecha", 2);
 					</div>
 					<?php } ?>
   				</div>
+  				
+  				<div class="clear"></div>
+   			
+				<?php if($pagination){ ?>
+				<div class="pagination">
+					<a href="?page=<?= $pager->getFirst() ?>">&lt;&lt; </a>
+					<a href="?page=<?= $pager->getPrevious() ?>">&lt; </a>
+					<a href="?page=<?= $pager->getLast() ?>">&gt;&gt; </a>
+					<a href="?page=<?= $pager->getNext() ?>">&gt; </a>
+				</div>
+				<?php } ?>
+				<div class="clear"></div>
+				
   			</div>
    		</div>
    		

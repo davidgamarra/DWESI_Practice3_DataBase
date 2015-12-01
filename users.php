@@ -12,7 +12,21 @@ if($sesion->isLogged()){
 	$sesion->sendRedirect("login.php");
 }
 
-$usuarios = $usuarioManager->getList(1, "apellidos", $usuarioManager->count());
+$pagination = false;
+if($usuarioManager->count() > 6){
+	$page = Request::get("page");
+	if($page === null){
+		$page = 1;
+	}
+	$pagination = true;
+	$pager = new Pager($usuarioManager->count(), 6, $page);
+}
+
+if(!$pagination){
+	$usuarios = $usuarioManager->getList(1, "apellidos", $usuarioManager->count());
+} else {
+	$usuarios = $usuarioManager->getList($page, "apellidos", 6);
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +39,7 @@ $usuarios = $usuarioManager->getList(1, "apellidos", $usuarioManager->count());
     <body>
 		<nav>
 			<a href="index.php"><img src="resources/logo.png" class="logo"/></a>
-			<a href="phplogout.php" class="link">Logout</a>
+			<a href="php/phplogout.php" class="link">Logout</a>
 			<a href="profile.php" class="link">Perfil</a>
 			<a href="users.php" class="link">Usuarios</a>
 		</nav>
@@ -41,8 +55,18 @@ $usuarios = $usuarioManager->getList(1, "apellidos", $usuarioManager->count());
 				<h>Cumpleaños: <span><?php echo $usuario->getBday(); ?></span></h>
 			</div>
   			<?php } ?>
-  			<h><?php var_dump($db->getQueryError()); ?></h>
-   			<h><?php var_dump($db->getConectionError()); ?></h>
+   			
+   			<div class="clear"></div>
+   			
+   			<?php if($pagination){ ?>
+			<div class="pagination">
+				<a href="?page=<?= $pager->getFirst() ?>">&lt;&lt; </a>
+				<a href="?page=<?= $pager->getPrevious() ?>">&lt; </a>
+				<a href="?page=<?= $pager->getLast() ?>">&gt;&gt; </a>
+				<a href="?page=<?= $pager->getNext() ?>">&gt; </a>
+			</div>
+			<?php } ?>
+  			<div class="clear"></div>
    		</div>
    		
    		<footer>

@@ -26,8 +26,11 @@ class Usuario {
 	function setBday($bday) { $this->bday = $bday; }
 	function getFecha() { return $this->bday; }
 	function getBday() { 
-		$d = DateTime::createFromFormat("Y-m-d", $this->bday);
-		return $d->format("d - M - Y");
+		if($this->bday != "" || $this->bday !== null){
+			$d = DateTime::createFromFormat("Y-m-d", $this->bday);
+			return $d->format("d - M - Y");
+		}
+		return $this->bday;
 	}
 	
 	function getJson() {

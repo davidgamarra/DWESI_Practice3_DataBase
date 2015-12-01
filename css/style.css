@@ -193,6 +193,8 @@ div.mensajes div.mensaje img {
 	height: 100px;
 	display: block;
 	float: left;
+	background-image: url('../resources/no_user.jpg');
+	background-size: 100px 100px;
 }
 
 div.mensajes div.mensaje h {
@@ -340,6 +342,7 @@ div.users {
 	width: 95%;
 	margin: 0 auto;
 	margin-top: 80px;
+	margin-bottom: 60px;
 }
 
 div.users div.usuario {
@@ -358,7 +361,9 @@ div.usuario {
 div.usuario img {
 	display: block;
 	width: 280px;
+	height: 280px;
 	margin: 10px;
+	background-image: url('../resources/no_user.jpg');
 }
 
 div.usuario h {
@@ -378,6 +383,34 @@ div.usuario h.user {
 div.usuario h span{
 	color: #424242;
 }
+
+/**************** Pagination ***************************************************/
+div.pagination {
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+div.pagination a {
+	display: block;
+	font-size: 30px;
+	color: #fff;
+	text-decoration: none;
+	background-color: #FF9800;
+	border-radius: 8px;
+	margin: 20px;
+	width: 50px;
+	text-align: center;
+}
+
+div.pagination a:nth-child(1), div.pagination a:nth-child(2) {
+	float: left;
+}
+
+div.pagination a:nth-child(3), div.pagination a:nth-child(4) {
+	float: right;
+}
+
 
 /**************** Users profile ***************************************************/
 

@@ -20,7 +20,7 @@ if($sesion->isLogged()){
    		
    		<div class="login">
    			<img src="resources/bg_login.jpg" class="background"/>
-   			<form action="phplogin.php" method="post" id="formlogin">
+   			<form action="php/phplogin.php" method="post" id="formlogin">
    				<label for="user">Usuario</label>
    				<input type="text" name="user" id="user"/>
    				<label for="psw">Contraseña</label>
@@ -29,7 +29,7 @@ if($sesion->isLogged()){
    				<div class="clear"></div>
    			</form>
    			
-   			<form action="phpregister.php" method="post" id="formregister">
+   			<form action="php/phpregister.php" method="post" id="formregister">
    				<label for="ruser">Usuario</label>
    				<input type="text" name="user" id="ruser"/>
    				<label for="email">Correo</label>

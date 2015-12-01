@@ -14,7 +14,23 @@ if($sesion->isLogged()){
 	$sesion->sendRedirect("login.php");
 }
 
-$mensajes = $mensajeManager->getList(1, "fecha", 2, "login = :login", array("login"=>$usuario->getLogin()));
+$pagination = false;
+if($mensajeManager->count("login = :login", array("login"=>$usuario->getLogin())) > Constant::NRPP){
+	$page = Request::get("page");
+	if($page === null){
+		$page = 1;
+	}
+	$pagination = true;
+	$pager = new Pager($mensajeManager->count("login = :login", array("login"=>$usuario->getLogin())), Constant::NRPP, $page);
+}
+
+if(!$pagination){
+	$mensajes = $mensajeManager->getList(1, "fecha desc", $mensajeManager->count("login = :login", array("login"=>$usuario->getLogin())), 
+									 "login = :login", array("login"=>$usuario->getLogin()));
+} else {
+	$mensajes = $mensajeManager->getList($page, "fecha desc", 10, "login = :login", array("login"=>$usuario->getLogin()));
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +43,7 @@ $mensajes = $mensajeManager->getList(1, "fecha", 2, "login = :login", array("log
     <body>
 		<nav>
 			<a href="index.php"><img src="resources/logo.png" class="logo"/></a>
-			<a href="phplogout.php" class="link">Logout</a>
+			<a href="php/phplogout.php" class="link">Logout</a>
 			<a href="profile.php" class="link">Perfil</a>
 			<a href="users.php" class="link">Usuarios</a>
 		</nav>
@@ -36,7 +52,7 @@ $mensajes = $mensajeManager->getList(1, "fecha", 2, "login = :login", array("log
 			<div class="usuario">
 				<h class="user"><?php echo $usuario->getLogin(); ?></h>
 				<img src="images/<?php echo $usuario->getLogin(); ?>.jpg"/>
-				<form action="phpeditprofile.php" method="post" id="formprof" enctype="multipart/form-data">
+				<form action="php/phpeditprofile.php" method="post" id="formprof" enctype="multipart/form-data">
 					<input type="file" name="photo" class="file"/>
 					<h>Nombre: <input type="text" name="nombre" value="<?php echo $usuario->getNombre(); ?>"/></h>
 					<h>Apellidos: <input type="text" name="apellidos" value="<?php echo $usuario->getApellidos(); ?>"/></h>
@@ -54,7 +70,7 @@ $mensajes = $mensajeManager->getList(1, "fecha", 2, "login = :login", array("log
 						<h class="login"><?php echo $mensaje->getLogin(); ?></h>
 						<h class="texto"><?php echo $mensaje->getTexto(); ?></h>
 						<h class="fecha"><?php echo $mensaje->getFecha(); ?></h>
-						<form action="phpdeletemsj.php" method="post">
+						<form action="php/phpdeletemsj.php" method="post">
 							<input type="hidden" name="id" value="<?php echo $mensaje->getId(); ?>"/>
 							<input type="submit" value="Eliminar" id="eliminarmensaje"/>
 						</form>
@@ -75,6 +91,19 @@ $mensajes = $mensajeManager->getList(1, "fecha", 2, "login = :login", array("log
 						<?php } ?>
 					<?php } ?>
   				</div>
+  				
+  				<div class="clear"></div>
+   			
+				<?php if($pagination){ ?>
+				<div class="pagination">
+					<a href="?page=<?= $pager->getFirst() ?>">&lt;&lt; </a>
+					<a href="?page=<?= $pager->getPrevious() ?>">&lt; </a>
+					<a href="?page=<?= $pager->getLast() ?>">&gt;&gt; </a>
+					<a href="?page=<?= $pager->getNext() ?>">&gt; </a>
+				</div>
+				<?php } ?>
+				<div class="clear"></div>
+				
   			</div>
    		</div>
    		
