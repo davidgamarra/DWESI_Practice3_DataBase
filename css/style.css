@@ -1,0 +1,410 @@
+@import url("reset.css");
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,300italic,900,300);
+
+body {
+	font-size: 16px;
+	background-color: #FFFFFF;
+	font-family: 'Lato', sans-serif;
+}
+
+.clear {
+	clear: both;
+}
+
+/**************** Nav *************************************************************/
+nav {
+	display: block;
+	background-color: #8BC34A;
+	width: 100%;
+	height: 40px;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+nav img.logo {
+	display: block;
+	float: left;
+	height: 40px;
+	margin-left: 30px;
+}
+
+nav a.link {
+	display: block;
+	float: right;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-size: 18px;
+	line-height: 40px;
+	margin-right: 50px;
+}
+
+nav a.link:hover {
+	color: #33691E;
+}
+
+/**************** Login ***********************************************************/
+div.login img.background {
+	width: 100%;
+    position: fixed;
+    top: 40px;
+    left: 0;
+    z-index: -1;
+}
+
+div.login {
+	margin-top: 100px;
+}
+
+div.login form {
+	display: block;
+	width: 300px;
+	background: rgba(139, 195, 74, 0.3);
+	margin-top: 40px;
+	padding: 30px;
+	margin-left: 15%;
+	border-radius: 8px;
+}
+
+div.login form label {
+	display: block;
+	float: left;
+	width: 35%;
+	height: 30px;
+	line-height: 30px;
+	text-align: right;
+	margin-bottom: 10px;
+	color: #FFF;
+	text-shadow: 1px 1px #aaa;
+	font-weight: 700;
+}
+
+div.login form input[type="text"], div.login form input[type="password"], div.login form input[type="email"] {
+	display: block;
+	float: right;
+	width: 55%;
+	height: 25px;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;
+	color: #424242;
+	padding-right: 10px;
+	padding-left: 10px;
+	margin-bottom: 10px;
+}
+
+div.login form input[type="submit"] {
+	display: block;
+	float: right;
+	background:none;
+  	border:none;
+	width: 40%;
+	height: 40px;
+	font-size: 18px;
+	font-family: 'Lato', sans-serif;
+	color: #FFF;
+	text-shadow: 1px 1px #aaa;
+	font-weight: 700;
+	border-radius: 12px;
+}
+
+div.login form input[type="submit"]:hover, div.login form input[type="submit"]:active {
+  	outline: 0;
+}
+
+div.login form input#log {
+	background-color: #76FF03;
+}
+
+div.login form input#reg {
+	background-color: #FFD600;
+}
+
+
+/**************** Index ***********************************************************/
+div.index {
+	width: 95%;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+
+div.index div.usuario {
+	position: fixed;
+	top: 50px;
+	left: 40px;
+}
+
+div.index div.content {
+	width: 68%;
+	display: block;
+	float: right;
+	padding-bottom: 60px;
+}
+
+div.index #inputmensaje {
+	width: 80%;
+	height: 25px;
+	font-size: 20px;
+	font-family: 'Lato', sans-serif;
+	color: #424242;
+	padding-right: 10px;
+	padding-left: 10px;
+	margin-bottom: 10px;
+}
+
+div.index #submitmensaje {
+	background:none;
+  	border:none;
+	width: 15%;
+	height: 35px;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;
+	color: #FFF;
+	text-shadow: 1px 1px #aaa;
+	font-weight: 700;
+	border-radius: 12px;
+	background-color: #03A9F4;
+	margin-top: -10px;
+}
+
+div.index #submitmensaje:hover, div.index #submitmensaje:active {
+  	outline: 0;
+}
+
+div.index #formmensaje{
+	width: 70%;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+
+div.mensajes {
+	width: 840px;
+	margin: 0 auto;
+}
+
+div.mensajes div.mensaje {
+	margin-top: 40px;
+	border: solid 1px #424242;
+	padding: 30px;
+	box-shadow: 5px 5px 5px #888888;
+}
+
+div.mensajes div.mensaje img {
+	width: 100px;
+	height: 100px;
+	display: block;
+	float: left;
+}
+
+div.mensajes div.mensaje h {
+	width: 650px;
+	display: block;
+	float: right;
+	margin-bottom: 12px;
+}
+
+div.mensajes div.mensaje h.login {
+	font-size: 18px;
+	font-weight: 700;
+}
+
+div.mensajes div.mensaje h.texto {
+	color: #424242;
+	font-size: 16px;
+}
+
+div.mensajes div.mensaje h.fecha {
+	color: #989898;
+	font-size: 14px;
+}
+
+div.mensajes div.comentario {
+	width: 600px;
+	border-bottom: solid 1px #424242;
+	border-right: solid 1px #424242;
+	border-left: solid 1px #424242;
+	padding: 30px;
+	box-shadow: 3px 3px 5px #888888;
+	background-color: white;
+}
+
+div.mensajes div.coment {
+	border-bottom: solid 1px #989898;
+	margin-bottom: 16px;
+}
+
+div.mensajes div.coment h {
+	width: 600px;
+	display: block;
+	margin-bottom: 12px;
+}
+
+div.mensajes div.coment h.login {
+	font-size: 16px;
+	font-weight: 700;
+}
+
+div.mensajes div.coment h.texto {
+	font-size: 14px;
+	color: #424242;
+}
+
+div.mensajes div.coment h.fecha {
+	color: #989898;
+	font-size: 12px;
+}
+
+div.mensajes div.comentario form.formcomentario {
+	width: 600px;
+	margin: 0 auto;
+	display: block;
+	margin-top: 12px;
+}
+
+div.mensajes div.comentario form.formcomentario input[type="text"]{
+	width: 70%;
+	height: 20px;
+	font-size: 15px;
+	font-family: 'Lato', sans-serif;
+	color: #424242;
+	padding-right: 10px;
+	padding-left: 10px;
+	margin-bottom: 10px;
+}
+
+div.mensajes div.comentario form.formcomentario input[type="submit"]{
+	background:none;
+  	border:none;
+	width: 10%;
+	height: 25px;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;
+	color: #FFF;
+	text-shadow: 1px 1px #aaa;
+	font-weight: 700;
+	border-radius: 12px;
+	background-color: #03A9F4;
+	margin-top: -10px;
+}
+
+/**************** Profile *********************************************************/
+.usuario input {
+	float: right;
+}
+
+#guardarperfil {
+	background:none;
+  	border:none;
+	width: 100px;
+	height: 25px;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;
+	color: #FFF;
+	text-shadow: 1px 1px #aaa;
+	font-weight: 700;
+	border-radius: 12px;
+	background-color: #03A9F4;
+}
+
+#guardarperfil:hover, #guardarperfil:active {
+  	outline: 0;
+}
+
+#eliminarmensaje {
+	display: block;
+	float: right;
+	background:none;
+  	border:none;
+	width: 10%;
+	height: 25px;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;
+	color: #FFF;
+	text-shadow: 1px 1px #aaa;
+	font-weight: 700;
+	border-radius: 12px;
+	background-color: #f44336;
+	margin-top: -10px;
+}
+
+#eliminarmensaje:hover, #eliminarmensaje:active {
+  	outline: 0;
+}
+
+.file {
+	margin-top: -10px;
+	margin-bottom: 20px;
+}
+
+/**************** Users ***********************************************************/
+div.users {
+	width: 95%;
+	margin: 0 auto;
+	margin-top: 80px;
+}
+
+div.users div.usuario {
+	float: left;
+	margin: 10px;
+}
+
+div.usuario {
+	width: 300px;
+	display: block;
+	border: solid 1px #424242;
+	padding: 30px;
+	box-shadow: 5px 5px 5px #888888;
+}
+
+div.usuario img {
+	display: block;
+	width: 280px;
+	margin: 10px;
+}
+
+div.usuario h {
+	display: block;
+	margin: 10px;
+	color: #989898;
+	font-size: 18px;
+}
+
+div.usuario h.user {
+	color: #424242;
+	font-size: 28px;
+	width: 280px;
+	text-align: center;
+}
+
+div.usuario h span{
+	color: #424242;
+}
+
+/**************** Users profile ***************************************************/
+
+
+/**************** Footer **********************************************************/
+footer {
+	display: block;
+	position:fixed;
+	left:0px;
+	bottom:0px;
+	height:20px;
+	width:100%;
+	background:#8BC34A;
+	line-height: 20px;
+	font-size: 12px;
+	color: #FFFFFF;
+}
+
+footer h.left {
+	display: block;
+	float: left;
+	margin-left: 40px;
+}
+
+footer h.right {
+	display: block;
+	float: right;
+	margin-right: 40px;
+}
+

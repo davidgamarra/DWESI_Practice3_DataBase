@@ -1,0 +1,37 @@
+create database practica3 default character set utf8 collate utf8_unicode_ci;
+
+grant all on practica3.* to usuario@localhost identified by 'clave';
+
+flush privileges;
+
+use practica3;
+
+create table if not exists usuario(
+ login varchar(20) not null,
+ psw varchar(20) not null,
+ email varchar(40) not null,
+ nombre varchar(20),
+ apellidos varchar(40),
+ bday date,
+ primary key (login)
+) engine=innodb;
+
+create table if not exists mensaje(
+ id int not null auto_increment,
+ login varchar(20) not null,
+ texto varchar(200) not null,
+ fecha timestamp not null,
+ primary key(id),
+ constraint foreign key(login) references usuario(login) on update cascade on delete restrict
+) engine=innodb;
+
+create table if not exists comentario(
+ id int not null auto_increment,
+ login varchar(20) not null,
+ id_mensaje int not null,
+ texto varchar(200) not null,
+ fecha timestamp not null,
+ primary key(id),
+ constraint foreign key(login) references usuario(login) on update cascade on delete restrict,
+ constraint foreign key(id_mensaje) references mensaje(id) on update cascade on delete cascade
+) engine=innodb;
